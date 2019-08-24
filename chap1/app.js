@@ -1,9 +1,12 @@
-const os = require('os');
+const EventEmitter = require('events');
 
-var totalmemory=os.totalmem();
-var freememory=os.freemem();
 
-console.log('TotalMemory' + totalmemory);
 
-console.log(`TotalMemory: ${totalmemory}`);
-console.log(`FreeMemory: ${freememory}`)
+//emitter.emit('messageLogged', {id:1, url:'http://'});
+
+const Logger=require('./logger');
+const logger= new Logger();
+logger.on('messageLogged', (arg)=>{
+	console.log('Listenner called',arg)
+})
+logger.log('message');
